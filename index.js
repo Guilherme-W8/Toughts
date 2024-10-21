@@ -7,6 +7,10 @@ import path from 'path';
 import os from 'os';
 import dbConnect from './db/dbConnect.js';
 
+// Models
+import Tought from './models/Tought.js';
+import User from './models/User.js';
+
 const fileStore = FileStore(session);
 const app = express();
 
@@ -28,7 +32,7 @@ app.use(
         secret: 'nosso_secret',
         resave: false,
         saveUninitialized: false,
-        store: new FileStore({
+        store: new fileStore({
             logFn: function() {},
             path: path.join(os.tmpdir(), 'sessions')
         }),
