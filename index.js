@@ -11,6 +11,12 @@ import dbConnect from './db/dbConnect.js';
 import Tought from './models/Tought.js';
 import User from './models/User.js';
 
+// Import Routes
+import toughtsRoutes from './routes/toughtsRoutes.js';
+
+// Import Controllers
+import ToughtController from './controllers/ToughtController.js';
+
 const fileStore = FileStore(session);
 const app = express();
 
@@ -58,10 +64,16 @@ app.use((request, response, next) => {
     next();
 });
 
+// Routes
+app.use('/toughts', toughtsRoutes);
+app.get('/', ToughtController.showToughts);
+
 dbConnect
     .sync(() => {
-        app.listen(3000);
+        app.listen(3000, () => {
+            console.log('Servidor rodando na porta 3000');
+        });
     })
     .catch((error) => {
-        console.log(error);
+        console.log('Erro ao conectar ao banco de dados:', error);
     });
