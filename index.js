@@ -13,9 +13,11 @@ import User from './models/User.js';
 
 // Import Routes
 import toughtsRoutes from './routes/toughtsRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 // Import Controllers
 import ToughtController from './controllers/ToughtController.js';
+import AuthController from './controllers/authController.js';
 
 const fileStore = FileStore(session);
 const app = express();
@@ -66,7 +68,11 @@ app.use((request, response, next) => {
 
 // Routes
 app.use('/toughts', toughtsRoutes);
+app.use('/', authRoutes);
+
 app.get('/', ToughtController.showToughts);
+app.get('/login', AuthController.login);
+app.get('/register', AuthController.register);
 
 dbConnect
   .sync()
