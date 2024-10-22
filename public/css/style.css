@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   background-color: #fff;
-  color: #00a2cf;
+  color: #000000;
 }
 
 /* Navbar */
@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid #008fb6;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 #navbar ul {
@@ -48,17 +48,89 @@
   padding: 2em;
 }
 
+/* Login e Register */
+
+.auth-container {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container h2 {
+  margin-bottom: 1em;
+  color: #008fb6;
+  border-left: 4px solid #008fb6;
+  padding: 0.3em;
+  width: 100px;
+}
+
+.auth-container a {
+  color: #008fb6;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.form-control label {
+  font-weight: bold;
+  padding-bottom: .5em;
+}
+
+.form-control input,
+.form-control textarea {
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid #008fb6;
+}
+
+form input[type='submit'],
+.btn {
+  background-color: transparent;
+  color: #008fb6;
+  border: 2px solid #008fb6;
+  padding: 0.5em 1.2em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .5s;
+}
+
+form input[type='submit']:hover,
+.btn:hover {
+  background-color: #008fb6;
+  color: #fff;
+}
+
 /* Footer */
 
 footer {
-  height: 150px;
+  height: 200px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #008fb6;
+  border-top: 1px solid #f2f2f2;
+  background-color: #333;
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+}
+
+footer p {
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
 }
 
 footer span {
   font-weight: bold;
   color: #008fb6;
+  background-color: #333;
 }
