@@ -69,11 +69,8 @@ app.use('/toughts', toughtsRoutes);
 app.get('/', ToughtController.showToughts);
 
 dbConnect
-    .sync(() => {
-        app.listen(3000, () => {
-            console.log('Servidor rodando na porta 3000');
-        });
-    })
-    .catch((error) => {
-        console.log('Erro ao conectar ao banco de dados:', error);
-    });
+  .sync()
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
