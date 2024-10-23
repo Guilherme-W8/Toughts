@@ -6,6 +6,39 @@ export default class AuthController {
         response.render('auth/login');
     }
 
+    static async loginPost(request, response){
+        const {email, password} = request.body;
+
+        const user = await User.findOne({
+            where: {
+                email: email
+            }
+        });
+
+        // Validando user por email
+        if(!user){
+            request.flash('message', 'Email inválido');
+            response.render('auth/login');
+            return;
+        }
+
+        // Validando senha do user
+        const passwordCheck = bcrypt.compareSync(password, user.password);
+        
+        if(!passwordCheck){
+            request.flash('message', 'Senha inválida');
+            response.render('auth/login');
+            return;
+        }
+
+        // Inicializando sessão
+        request.session.userId = user.id;
+        request.flash('message', 'Autenticado com sucesso');
+        request.session.save(() => {
+            response.redirect('/');
+        });
+    }
+
     static register(request, response){
         response.render('auth/register');
     }

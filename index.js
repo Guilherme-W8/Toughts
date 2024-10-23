@@ -41,13 +41,13 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: new fileStore({
-            logFn: function() {},
+            logFn: function () { },
             path: path.join(os.tmpdir(), 'sessions')
         }),
 
         cookie: {
             secure: false,
-            maxAge: 360000, 
+            maxAge: 360000,
             expires: new Date(Date.now() + 360000),
             httpOnly: true
         }
@@ -59,7 +59,7 @@ app.use(flash());
 
 // Colocar session para response
 app.use((request, response, next) => {
-    if(request.session.userId){
+    if (request.session.userId) {
         response.locals.session = request.session;
     }
 
@@ -75,8 +75,8 @@ app.get('/login', AuthController.login);
 app.get('/register', AuthController.register);
 
 dbConnect
-  .sync()
-  .then(() => {
-    app.listen(3000);
-  })
-  .catch((err) => console.log(err));
+    .sync()
+    .then(() => {
+        app.listen(3000);
+    })
+    .catch((err) => console.log(err));
