@@ -60,4 +60,9 @@ export default class AuthController {
             console.log(error);
         }
     }
+
+    static logout(request, response){
+        request.session.destroy();
+        response.redirect('/login');
+    }
 }
