@@ -9,4 +9,8 @@ export default class ToughtController {
     static async dashboard(request, response) {
         response.render('toughts/dashboard');
     }
+
+    static createTought(request, response) {
+        response.render('toughts/create');
+    }
 }
