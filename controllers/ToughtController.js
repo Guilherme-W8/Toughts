@@ -4,7 +4,7 @@ import User from '../models/User.js';
 
 export default class ToughtController {
     static async showToughts(request, response) {
-        response.render('toughts/home');
+        return response.render('toughts/home');
     }
 
     static async dashboard(request, response) {
@@ -24,7 +24,9 @@ export default class ToughtController {
         }
 
         const toughts = user.Toughts.map((result) => result.dataValues);
-        return response.render('toughts/dashboard', { toughts });
+        let emptyToughts = false;
+
+        return response.render('toughts/dashboard', { toughts, emptyToughts });
     }
 
     static async delete(request, response) {
@@ -41,7 +43,7 @@ export default class ToughtController {
 
             request.flash('message', 'Pensamento excluido com sucesso!');
             request.session.save(() => {
-                response.redirect('/toughts/dashboard');
+                return response.redirect('/toughts/dashboard');
             });
         } catch (error) {
             console.log(`Erro inesperado: ${error}`);
@@ -49,7 +51,7 @@ export default class ToughtController {
     }
 
     static createTought(request, response) {
-        response.render('toughts/create');
+        return response.render('toughts/create');
     }
 
     static async toughtPost(request, response) {
@@ -63,7 +65,7 @@ export default class ToughtController {
 
             request.flash('message', 'Pensamento criado com sucesso!');
             request.session.save(() => {
-                response.redirect('/toughts/dashboard');
+                return response.redirect('/toughts/dashboard');
             });
         } catch (error) {
             console.log(error);
