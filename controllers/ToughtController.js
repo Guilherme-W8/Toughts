@@ -1,3 +1,4 @@
+import { where } from 'sequelize';
 import Tought from '../models/Tought.js';
 import User from '../models/User.js';
 
@@ -24,6 +25,27 @@ export default class ToughtController {
 
         const toughts = user.Toughts.map((result) => result.dataValues);
         return response.render('toughts/dashboard', { toughts });
+    }
+
+    static async delete(request, response) {
+        const id = request.body.id;
+        const UserId = request.session.userId;
+
+        try {
+            await Tought.destroy({
+                where: {
+                    id: id,
+                    UserId: UserId
+                }
+            });
+
+            request.flash('message', 'Pensamento excluido com sucesso!');
+            request.session.save(() => {
+                response.redirect('/toughts/dashboard');
+            });
+        } catch (error) {
+            console.log(`Erro inesperado: ${error}`);
+        }
     }
 
     static createTought(request, response) {
