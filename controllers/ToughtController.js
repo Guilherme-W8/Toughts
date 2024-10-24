@@ -23,9 +23,6 @@ export default class ToughtController {
         }
 
         const toughts = user.Toughts.map((result) => result.dataValues);
-
-        console.log(toughts);
-
         return response.render('toughts/dashboard', { toughts });
     }
 
