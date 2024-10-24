@@ -7,7 +7,26 @@ export default class ToughtController {
     }
 
     static async dashboard(request, response) {
-        response.render('toughts/dashboard');
+        const id = request.session.userId;
+
+        const user = await User.findOne({
+            where: {
+                id: id
+            },
+
+            include: Tought,
+            plain: true
+        });
+
+        if (!user) {
+            return response.redirect('/login');
+        }
+
+        const toughts = user.Toughts.map((result) => result.dataValues);
+
+        console.log(toughts);
+
+        return response.render('toughts/dashboard', { toughts });
     }
 
     static createTought(request, response) {
