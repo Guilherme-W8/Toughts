@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Controller functions
 router.get('/add', checkAuth, ToughtController.createTought);
+router.post('/add', checkAuth, ToughtController.toughtPost);
 router.get('/dashboard', checkAuth, ToughtController.dashboard);
 router.get('/', ToughtController.showToughts);
 
