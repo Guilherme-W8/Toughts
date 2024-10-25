@@ -88,4 +88,27 @@ export default class ToughtController {
 
         response.render('toughts/edit', { tought });
     }
+
+    static async toughtEditPost(request, response) {
+        const id = request.body.id;
+
+        const tought = {
+            title: request.body.title
+        }
+
+        try {
+            await Tought.update(tought, {
+                where: {
+                    id: id
+                }
+            });
+
+            request.flash('message', 'Pensamento atualizado com sucesso!');
+            request.session.save(() => {
+                response.redirect('/toughts/dashboard');
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
