@@ -75,4 +75,17 @@ export default class ToughtController {
             console.log(error);
         }
     }
+
+    static async toughtEdit(request, response) {
+        const id = request.params.id;
+
+        const tought = await Tought.findOne({
+            raw: true,
+            where: {
+                id: id,
+            }
+        });
+
+        response.render('toughts/edit', { tought });
+    }
 }
