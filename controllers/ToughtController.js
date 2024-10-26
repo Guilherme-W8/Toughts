@@ -4,7 +4,12 @@ import User from '../models/User.js';
 
 export default class ToughtController {
     static async showToughts(request, response) {
-        return response.render('toughts/home');
+        const toughtsData = await Tought.findAll({
+            include: User
+        });
+        const toughts = toughtsData.map((result) => result.get({ plain: true }));
+
+        return response.render('toughts/home', { toughts });
     }
 
     static async dashboard(request, response) {
