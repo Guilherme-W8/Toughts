@@ -6,8 +6,18 @@
   color: #000000;
 }
 
-/* Navbar */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
 
+main {
+  flex: 1;
+}
+
+/* Navbar */
 #logo img {
   height: 40px;
 }
@@ -42,7 +52,6 @@
 }
 
 /* Container */
-
 .container {
   min-height: 60vh;
   padding: 2em;
@@ -61,7 +70,6 @@
 }
 
 /* Login e Register */
-
 .auth-container {
   max-width: 450px;
   margin: 0 auto;
@@ -121,7 +129,6 @@ form input[type='submit']:hover,
 }
 
 /* Create and edit form*/
-
 .tought-form-container a {
   color: #008fb6;
   text-decoration: none;
@@ -144,7 +151,6 @@ form input[type='submit']:hover,
 }
 
 /* Dashboard */
-
 .title-container {
   display: flex;
   justify-content: space-between;
@@ -276,7 +282,6 @@ form input[type='submit']:hover,
 }
 
 /* Footer */
-
 footer {
   height: 200px;
   width: 100%;
@@ -285,9 +290,10 @@ footer {
   align-items: center;
   border-top: 1px solid #f2f2f2;
   background-color: #333;
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
+  margin-top: auto;
 }
 
 footer p {
