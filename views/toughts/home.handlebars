@@ -1,5 +1,16 @@
 <div class="home-header">
-    <h1>Feed de pensamentos</h1>
+    {{#if search}}
+    <h1>Buscando por: <span>{{search}}</span></h1>
+
+    {{#if quantityToughts}}
+    <p><span>{{quantityToughts}}</span> pensamentos encontrados para <span>"{{search}}"</span></p>
+    {{else}}
+    <p>Nenhum pensamento encontrado para <span>"{{search}}"</span></p>
+    {{/if}}
+
+    {{else}}
+    <h1>Feed global de <span>pensamentos</span></h1>
+    {{/if}}
 
     <form action="/" method="GET">
         <input type="text" name="search" placeholder="Busque por pensamentos semelhantes">
