@@ -1,15 +1,31 @@
 import { where } from 'sequelize';
 import Tought from '../models/Tought.js';
 import User from '../models/User.js';
+import { Op } from 'sequelize';
 
 export default class ToughtController {
     static async showToughts(request, response) {
+        let search = '';
+
+        if (request.query.search) {
+            search = request.query.search;
+        }
+
         const toughtsData = await Tought.findAll({
-            include: User
+            include: User,
+            where: {
+                title: { [Op.like]: `%${search}%` }
+            }
         });
         const toughts = toughtsData.map((result) => result.get({ plain: true }));
 
-        return response.render('toughts/home', { toughts });
+        let quantityToughts = toughts.length;
+
+        if (quantityToughts === 0) {
+            quantityToughts = false;
+        }
+
+        return response.render('toughts/home', { toughts, search, quantityToughts });
     }
 
     static async dashboard(request, response) {
