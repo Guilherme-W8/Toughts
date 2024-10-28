@@ -11,11 +11,20 @@ export default class ToughtController {
             search = request.query.search;
         }
 
+        let order = 'DESC';
+
+        if (request.query.order === 'old') {
+            order = 'ASC';
+        } else {
+            order = 'DESC';
+        }
+
         const toughtsData = await Tought.findAll({
             include: User,
             where: {
                 title: { [Op.like]: `%${search}%` }
-            }
+            },
+            order: [['createdAt', order]]
         });
         const toughts = toughtsData.map((result) => result.get({ plain: true }));
 
